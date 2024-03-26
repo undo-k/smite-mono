@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mock-api-service:
+    build:
+      context: ./mock-api-service
+      dockerfile: ./mock-api-service.dockerfile
+    restart: always
+    ports: 
+      - "8081:8081"
+    deploy:
+      mode: replicated
+      replicas: 1
+  cache-service:
+    build:
+      context: ./cache-service
+      dockerfile: ./cache-service.dockerfile
+    restart: always
+    ports: 
+      - "5001:5001"
+    deploy:
+      mode: replicated
+      replicas: 1
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: ./api-gateway.dockerfile
+    restart: always
+    ports: 
+      - "8080:8080"
+    deploy:
+      mode: replicated
+      replicas: 1
+  aggregator:
+    build:
+      context: ./aggregator
+      dockerfile: ./aggregator.dockerfile
+    restart: always
+    ports: 
+      - "5002:5002"
+    deploy:
+      mode: replicated
+      replicas: 1

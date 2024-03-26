@@ -1,0 +1,9 @@
+go 1.21.7
+
+use (
+	./aggregator
+	./api-gateway
+	./cache-service
+	./mock-api-service
+	./protos
+)

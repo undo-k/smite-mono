@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "/protos";
+
+
+message Item{
+    int32 id = 1;
+    string name = 2;
+}
+
+message God{
+    int32 id = 1;
+    string name = 2;
+    string role = 3;
+    float avg_kills = 4;
+    float avg_deaths = 5;
+    float avg_assists = 6;
+    float avg_gold = 7;
+    float win_rate = 8;
+    float pick_rate = 9;
+    float ban_rate = 10;
+    repeated Item hot_items = 11;
+}
+
+message GodRequest{
+    string name = 1;
+}
+
+message Response{
+    bool ok = 1;
+    optional string message = 2;
+}
+
+message GodList{
+    repeated God gods = 1;
+}
+
+service GodCache {
+    rpc FetchGod(GodRequest) returns (God);
+    rpc FetchAllGods(GodRequest) returns (GodList);
+    rpc PutGod(God) returns (Response);
+}
+
+
+message AggregateRequest{
+    int32 numberOfRequests = 1;
+}
+message AggregateResponse{
+    bool ok = 1;
+}
+
+service Aggregator {
+    rpc FetchData(AggregateRequest) returns (AggregateResponse);
+}
+
+
+// type God struct {
+// 	Id         int32   `json:"id"`
+// 	Name       string  `json:"name"`
+// 	Role       string  `json:"role"`
+// 	AvgKills   float32 `json:"avg_kills"`
+// 	AvgDeaths  float32 `json:"avg_deaths"`
+// 	AvgAssists float32 `json:"avg_assists"`
+// 	AvgGold    float32 `json:"avg_gold"`
+// 	WinRate    float32 `json:"win_rate"`
+// 	PickRate   float32 `json:"pick_rate"`
+// 	BanRate    float32 `json:"ban_rate"`
+// 	HotItems   []Item  `json:"hot_items"`
+// 	TopItems   []Item  `json:"top_items"`
+// }
+
+// type Item struct {
+// 	Id   int32  `json:"id"`
+// 	Name string `json:"name"`
+// }
