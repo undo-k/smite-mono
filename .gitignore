@@ -1,0 +1,6 @@
+aggregator/aggregatorApp
+api-gateway/aggregatorApp
+mock-api-service/mockApiApp
+certs/gen.sh
+cache-service/cacheApp
+api-gateway/apiGatewayApp
