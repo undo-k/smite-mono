@@ -18,6 +18,8 @@ func main() {
 
 	setDebugMode(&app)
 
+	batchData(300)
+
 	app.gRPCListen()
 }
 
